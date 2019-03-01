@@ -12,12 +12,13 @@ public class UsuarioDAO extends GenericDAO {
 
 		StringBuilder sb = new StringBuilder();
 
-		sb.append(" INSERT INTO TB_USUARIO_USU (				");
-		sb.append("		USU_ID,									");
-		sb.append("		USU_NOME,								");
-		sb.append("		USU_LOGIN,								");
-		sb.append("		USU_SENHA								");
-		sb.append("	) VALUES ( SEQ_USUARIO.NEXTVAL, ?, ?, ? )	");
+		sb.append(" INSERT INTO db_loja.tb_usuario_usu			");
+		sb.append("		(										");
+		sb.append("		usu_nome,								");
+		sb.append("		usu_login,								");
+		sb.append("		usu_senha,								");
+		sb.append("		usu_data_cadastro )						");
+		sb.append("	VALUES ( ?, ?, ?, CURDATE())				");
 
 		conectarBanco();
 
@@ -30,7 +31,7 @@ public class UsuarioDAO extends GenericDAO {
 			this.stmt.executeUpdate();
 
 		} catch (Exception e) {
-			System.out.println("UsuarioDAO -> cadastrarUsuario -> Erro ao cadastrar usuario: " + e.getMessage());
+			System.err.println("ERRO: UsuarioDAO -> cadastrarUsuario: " + e.getMessage());
 			cadastrou = false;
 		} finally {
 			desconectarBanco();
@@ -48,15 +49,15 @@ public class UsuarioDAO extends GenericDAO {
 
 		StringBuilder sb = new StringBuilder();
 
-		sb.append("	SELECT				");
-		sb.append("		USU_ID,			");
-		sb.append("		USU_NOME,		");
-		sb.append("		USU_LOGIN,		");
-		sb.append("		USU_SENHA		");
-		sb.append("FROM					");
-		sb.append("		TB_USUARIO_USU	");
-		sb.append("WHERE				");
-		sb.append("		USU_LOGIN = ?	");
+		sb.append("	SELECT							");
+		sb.append("		USU.USU_ID,					");
+		sb.append("		USU.USU_NOME,				");
+		sb.append("		USU.USU_LOGIN,				");
+		sb.append("		USU.USU_SENHA				");
+		sb.append("FROM								");
+		sb.append("		DB_LOJA.TB_USUARIO_USU USU	");
+		sb.append("WHERE							");
+		sb.append("		USU_LOGIN = ?				");
 
 		conectarBanco();
 
@@ -77,7 +78,7 @@ public class UsuarioDAO extends GenericDAO {
 			}
 
 		} catch (Exception e) {
-			System.out.println("UsuarioDAO -> buscarUsuario -> Erro ao buscar usuario: " + e.getMessage());
+			System.err.println("ERRO: UsuarioDAO -> buscarUsuario: " + e.getMessage());
 		} finally {
 			desconectarBanco();
 		}

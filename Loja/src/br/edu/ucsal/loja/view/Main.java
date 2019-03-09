@@ -4,21 +4,9 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 
-public class LojaMain extends JFrame {
+public class Main extends JFrame {
 
 	private static final long serialVersionUID = 1L;
-
-	public LojaMain() {
-
-		super("Fazer Login");
-		setDefaultCloseOperation(EXIT_ON_CLOSE);
-		setContentPane(new TelaLogin());
-		pack();
-		setResizable(false);
-		setSize(300, 250);
-		setLocationRelativeTo(null);
-
-	}
 
 	public static void main(String[] args) {
 
@@ -37,7 +25,7 @@ public class LojaMain extends JFrame {
 
 			@Override
 			public void run() {
-				new LojaMain().setVisible(true);
+				new TelaLogin().setVisible(true);
 
 			}
 		});

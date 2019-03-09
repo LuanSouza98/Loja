@@ -1,7 +1,5 @@
 package br.edu.ucsal.loja.controller;
 
-import javax.swing.JOptionPane;
-
 import br.edu.ucsal.loja.bean.Usuario;
 import br.edu.ucsal.loja.dao.LocalDAO;
 import br.edu.ucsal.loja.dao.mysql.UsuarioDAO;
@@ -20,40 +18,39 @@ public class UsuarioAction {
 	 * @param usuario
 	 */
 
-	public void logar(Usuario usuario) {
+	public String logar(Usuario usuario) {
+
+		String mensagem = null;
 
 		// Verifica se o login e a senha estão nulos
 		if (usuario.getLogin().isEmpty() || usuario.getSenha().isEmpty()) {
-			System.out.println("Informe usuário e senha!");
-			JOptionPane.showMessageDialog(null, "Informe usuário e senha!");
-			return;
-		}
-
-		// localDao = new LocalDAO();
-		usuarioDao = new UsuarioDAO();
-
-		// Busca usuário no banco
-		// usuarioBanco = localDao.buscarUsuario(usuario);
-		usuarioBanco = usuarioDao.buscarUsuario(usuario);
-
-		// Verifica se o login informado pelo usuario existe no BD
-		if (usuarioBanco == null) {
-			// Usuário não encontrado!
-			System.out.println("Usuário ou senha incorreto!");
-			JOptionPane.showMessageDialog(null, "Usuário ou senha incorreto!");
-			return;
-		}
-
-		// Verfica se a senha informada pelo usuário está correta
-		if (BCrypt.checkpw(usuario.getSenha(), usuarioBanco.getSenha())) {
-			System.out.println("Usuário autenticado!");
-			JOptionPane.showMessageDialog(null, "Usuário autenticado!");
+			mensagem = "Informe usuário e senha!";
 
 		} else {
-			// Senha incorreta
-			System.out.println("Senha incorreta!");
-			JOptionPane.showMessageDialog(null, "Usuário ou senha incorreto!");
+
+			localDao = new LocalDAO();
+			usuarioBanco = localDao.buscarUsuario(usuario);
+
+			// Busca usuário no banco
+			// usuarioDao = new UsuarioDAO();
+			// usuarioBanco = usuarioDao.buscarUsuario(usuario);
+
+			// Verifica se o login informado pelo usuario existe no BD
+			if (usuarioBanco == null) {
+				mensagem = "Usuário ou senha incorreto!";
+
+			} else {
+
+				// Verfica se a senha informada pelo usuário está correta
+				if (!BCrypt.checkpw(usuario.getSenha(), usuarioBanco.getSenha())) {
+					mensagem = "Usuário ou senha incorreto!";
+
+				}
+			}
+
 		}
+
+		return mensagem;
 
 	}
 

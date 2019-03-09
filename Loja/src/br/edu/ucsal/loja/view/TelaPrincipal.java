@@ -1,6 +1,5 @@
 package br.edu.ucsal.loja.view;
 
-import java.awt.EventQueue;
 import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -17,49 +16,45 @@ public class TelaPrincipal extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					TelaPrincipal frame = new TelaPrincipal();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */
 	public TelaPrincipal() {
+		setTitle("Sistema");
 		setExtendedState(Frame.MAXIMIZED_BOTH);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(400, 100, 700, 600);
+		initComponents();
+
+	}
+
+	private void initComponents() {
 
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
-		
+
 		JMenu mnCliente = new JMenu("Cliente");
 		menuBar.add(mnCliente);
-		
-		JMenuItem mntmCadastrar_1 = new JMenuItem("Cadastrar");
-		mnCliente.add(mntmCadastrar_1);
+
+		JMenuItem mntmCadastrarCliente = new JMenuItem("Cadastrar");
+		mntmCadastrarCliente.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new TelaCadastrarCliente().setVisible(true);
+			}
+		});
+		mnCliente.add(mntmCadastrarCliente);
 
 		JMenu mnProduto = new JMenu("Produto");
 		menuBar.add(mnProduto);
 
-		JMenuItem mntmCadastrar = new JMenuItem("Cadastrar");
-		mntmCadastrar.addActionListener(new ActionListener() {
+		JMenuItem mntmCadastrarProduto = new JMenuItem("Cadastrar");
+		mntmCadastrarProduto.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				new TelaCadastrarProduto().setVisible(true);
 			}
 		});
-		mnProduto.add(mntmCadastrar);
+		mnProduto.add(mntmCadastrarProduto);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+
 	}
 }

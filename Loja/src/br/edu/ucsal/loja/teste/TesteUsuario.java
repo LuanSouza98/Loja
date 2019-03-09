@@ -10,11 +10,13 @@ public class TesteUsuario {
 		// Login: admin
 		// Senha: 123456
 
-		Usuario usuario = new Usuario("Teste2", "Teste2", "654321");
+		//Usuario usuario = new Usuario("Teste2", "Teste2", "654321");
 
-		//criarNovoUsuario(usuario);
+		Usuario autenticarUsuario = new Usuario("admin", "123456");
 
-		logar(usuario);
+		// criarNovoUsuario(usuario);
+
+		logar(autenticarUsuario);
 
 	}
 

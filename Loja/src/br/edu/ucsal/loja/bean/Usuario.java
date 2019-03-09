@@ -11,9 +11,23 @@ public class Usuario {
 		super();
 	}
 
+	public Usuario(Integer id, String nome, String login, String senha) {
+		super();
+		this.id = id;
+		this.nome = nome;
+		this.login = login;
+		this.senha = senha;
+	}
+
 	public Usuario(String nome, String login, String senha) {
 		super();
 		this.nome = nome;
+		this.login = login;
+		this.senha = senha;
+	}
+
+	public Usuario(String login, String senha) {
+		super();
 		this.login = login;
 		this.senha = senha;
 	}

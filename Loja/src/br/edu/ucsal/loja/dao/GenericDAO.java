@@ -7,13 +7,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class GenericDAO {
-	// oracle.jdbc.driver.OracleDriver
-//	private static final String DRIVER = "oracle.jdbc.driver.OracleDriver";
-//	private static final String URL = "jdbc:oracle:thin:@172.30.0.25:1521:desv";
-//	private static final String USER = "luan";
-//	private static final String PASSWORD = "luan.2018";
+	
+	//	private static final String DRIVER = "oracle.jdbc.driver.OracleDriver";
+	//	private static final String URL = "jdbc:oracle:thin:@172.30.0.25:1521:desv";
+	//	private static final String USER = "luan";
+	//	private static final String PASSWORD = "luan.2018";
 
-	private static final String URL = "jdbc:mysql://localhost:3306/agenda?useTimezone=true&serverTimezone=UTC";
+	private static final String URL = "jdbc:mysql://localhost:3306/db_loja?useTimezone=true&serverTimezone=UTC";
 	private static final String USER = "root";
 	private static final String PASSWORD = "12345";
 	private static final String DRIVER = "com.mysql.cj.jdbc.Driver";

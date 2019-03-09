@@ -1,10 +1,10 @@
-package br.edu.ucsal.loja.dao.mysql;
+package br.edu.ucsal.loja.dao.oracle;
 
 import br.edu.ucsal.loja.bean.Usuario;
 import br.edu.ucsal.loja.dao.GenericDAO;
 
 /**
- * DAO PARA CONECTAR COM O BANCO DE DADOS MYSQL
+ * DAO PARA CONECTAR COM O BANCO DE DADOS DA ORACLE
  * 
  * @author LUAN
  *
@@ -20,13 +20,12 @@ public class UsuarioDAO extends GenericDAO {
 
 		StringBuilder sb = new StringBuilder();
 
-		sb.append(" INSERT INTO db_loja.tb_usuario_usu			");
-		sb.append("		(										");
-		sb.append("		usu_nome,								");
-		sb.append("		usu_login,								");
-		sb.append("		usu_senha,								");
-		sb.append("		usu_data_cadastro )						");
-		sb.append("	VALUES ( ?, ?, ?, CURDATE())				");
+		sb.append(" INSERT INTO TB_USUARIO_USU (				");
+		sb.append("		USU_ID,									");
+		sb.append("		USU_NOME,								");
+		sb.append("		USU_LOGIN,								");
+		sb.append("		USU_SENHA								");
+		sb.append("	) VALUES ( SEQ_USUARIO.NEXTVAL, ?, ?, ? )	");
 
 		conectarBanco();
 
@@ -57,15 +56,15 @@ public class UsuarioDAO extends GenericDAO {
 
 		StringBuilder sb = new StringBuilder();
 
-		sb.append("	SELECT							");
-		sb.append("		USU.USU_ID,					");
-		sb.append("		USU.USU_NOME,				");
-		sb.append("		USU.USU_LOGIN,				");
-		sb.append("		USU.USU_SENHA				");
-		sb.append("FROM								");
-		sb.append("		DB_LOJA.TB_USUARIO_USU USU	");
-		sb.append("WHERE							");
-		sb.append("		USU_LOGIN = ?				");
+		sb.append("	SELECT				");
+		sb.append("		USU_ID,			");
+		sb.append("		USU_NOME,		");
+		sb.append("		USU_LOGIN,		");
+		sb.append("		USU_SENHA		");
+		sb.append("FROM					");
+		sb.append("		TB_USUARIO_USU	");
+		sb.append("WHERE				");
+		sb.append("		USU_LOGIN = ?	");
 
 		conectarBanco();
 
@@ -75,7 +74,7 @@ public class UsuarioDAO extends GenericDAO {
 			this.stmt.setString(++i, usuario.getLogin().toUpperCase());
 			this.rs = this.stmt.executeQuery();
 
-			while (rs.next()) {
+			while (this.rs.next()) {
 				usuarioBanco = new Usuario();
 
 				usuarioBanco.setId(this.rs.getInt("USU_ID"));

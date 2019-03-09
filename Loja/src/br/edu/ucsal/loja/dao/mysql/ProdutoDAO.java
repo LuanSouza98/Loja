@@ -1,6 +1,14 @@
-package br.edu.ucsal.loja.dao;
+package br.edu.ucsal.loja.dao.mysql;
 
 import br.edu.ucsal.loja.bean.Produto;
+import br.edu.ucsal.loja.dao.GenericDAO;
+
+/**
+ * DAO PARA CONECTAR COM O BANCO DE DADOS MYSQL
+ * 
+ * @author LUAN
+ *
+ */
 
 public class ProdutoDAO extends GenericDAO {
 

@@ -8,11 +8,10 @@ public class Usuario {
 	private String senha;
 
 	public Usuario() {
-		super();
+
 	}
 
 	public Usuario(Integer id, String nome, String login, String senha) {
-		super();
 		this.id = id;
 		this.nome = nome;
 		this.login = login;
@@ -20,16 +19,28 @@ public class Usuario {
 	}
 
 	public Usuario(String nome, String login, String senha) {
-		super();
 		this.nome = nome;
 		this.login = login;
 		this.senha = senha;
 	}
 
 	public Usuario(String login, String senha) {
-		super();
 		this.login = login;
 		this.senha = senha;
+	}
+
+	private static class UsuarioLogado {
+		private final static Usuario instance = new Usuario();
+	}
+
+	public static Usuario getUsuarioLogado() {
+		return UsuarioLogado.instance;
+	}
+
+	public void setUsuarioLogado(Usuario usuarioLogado) {
+		this.id = usuarioLogado.getId();
+		this.nome = usuarioLogado.getNome();
+		this.login = usuarioLogado.getLogin();
 	}
 
 	public Integer getId() {

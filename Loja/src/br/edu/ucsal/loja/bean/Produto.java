@@ -9,17 +9,15 @@ public class Produto {
 	private BigDecimal preco;
 
 	public Produto() {
-		super();
+
 	}
 
 	public Produto(String decricao, BigDecimal preco) {
-		super();
 		this.decricao = decricao;
 		this.preco = preco;
 	}
 
 	public Produto(Integer id, String decricao, BigDecimal preco) {
-		super();
 		this.id = id;
 		this.decricao = decricao;
 		this.preco = preco;

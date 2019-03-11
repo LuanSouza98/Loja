@@ -1,6 +1,7 @@
 package br.edu.ucsal.loja.utils;
 
 import br.edu.ucsal.loja.bean.Usuario;
+import br.edu.ucsal.loja.dao.GenericDAO;
 
 public class Utils {
 
@@ -16,6 +17,12 @@ public class Utils {
 		usuario.setSenha(senhaHasheada);
 
 		return usuario;
+
+	}
+
+	public static boolean testarConexaoBanco() {
+
+		return new GenericDAO().testarConexaoBanco();
 
 	}
 

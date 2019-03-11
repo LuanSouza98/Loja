@@ -1,12 +1,12 @@
-package br.edu.ucsal.loja.dao;
+package br.edu.ucsal.loja.dao.local;
 
 import br.edu.ucsal.loja.bean.Usuario;
 
-public class LocalDAO {
+public class LocalUsuarioDAO {
 
 	private static Usuario[] ARRAY_USUARIO;
 
-	public LocalDAO() {
+	public LocalUsuarioDAO() {
 
 		if (ARRAY_USUARIO == null) {
 			ARRAY_USUARIO = new Usuario[2];

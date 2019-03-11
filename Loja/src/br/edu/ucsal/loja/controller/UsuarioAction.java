@@ -1,7 +1,7 @@
 package br.edu.ucsal.loja.controller;
 
 import br.edu.ucsal.loja.bean.Usuario;
-import br.edu.ucsal.loja.dao.LocalDAO;
+import br.edu.ucsal.loja.dao.local.LocalUsuarioDAO;
 import br.edu.ucsal.loja.dao.mysql.UsuarioDAO;
 import br.edu.ucsal.loja.utils.BCrypt;
 import br.edu.ucsal.loja.utils.Utils;
@@ -10,7 +10,7 @@ public class UsuarioAction {
 
 	private UsuarioDAO usuarioDao;
 	private Usuario usuarioBanco;
-	private LocalDAO localDao;
+	private LocalUsuarioDAO localDao;
 
 	/**
 	 * Autentica as credenciais do usuário
@@ -27,13 +27,19 @@ public class UsuarioAction {
 			mensagem = "Informe usuário e senha!";
 
 		} else {
-
-			localDao = new LocalDAO();
+			
+			localDao = new LocalUsuarioDAO();
 			usuarioBanco = localDao.buscarUsuario(usuario);
 
 			// Busca usuário no banco
-			// usuarioDao = new UsuarioDAO();
-			// usuarioBanco = usuarioDao.buscarUsuario(usuario);
+//			if (Utils.testarConexaoBanco()) {
+//				usuarioDao = new UsuarioDAO();
+//				usuarioBanco = usuarioDao.buscarUsuario(usuario);
+//
+//			} else {
+//				localDao = new LocalUsuarioDAO();
+//				usuarioBanco = localDao.buscarUsuario(usuario);
+//			}
 
 			// Verifica se o login informado pelo usuario existe no BD
 			if (usuarioBanco == null) {
@@ -45,7 +51,11 @@ public class UsuarioAction {
 				if (!BCrypt.checkpw(usuario.getSenha(), usuarioBanco.getSenha())) {
 					mensagem = "Usuário ou senha incorreto!";
 
+				} else {
+					// Guarda as informações do usuario
+					Usuario.getUsuarioLogado().setUsuarioLogado(usuarioBanco);
 				}
+
 			}
 
 		}
@@ -82,7 +92,7 @@ public class UsuarioAction {
 
 	}
 
-	public void encerrarAplicacao() {
+	public void alterarSenha(Usuario usuario, String novaSenha) {
 
 	}
 
